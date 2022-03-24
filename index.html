@@ -1,0 +1,603 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:16px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 800px;
+	}
+	
+	h1 {
+		font-weight:300;
+	}
+		
+	h2 {
+		font-weight:300;
+		font-size: 22px;
+		text-align: left;
+	}
+
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+
+	pre {
+    text-align: left;
+    white-space: pre;
+	background-color: ghostwhite;
+	border: 1px solid #CCCCCC;
+	padding: 10px 20px;
+	margin: 10px;
+    tab-size:         4; /* Chrome 21+, Safari 6.1+, Opera 15+ */
+    -moz-tab-size:    4; /* Firefox 4+ */
+    -o-tab-size:      4; /* Opera 11.5 & 12.1 only */
+  	}
+
+</style>
+
+<html>
+  <head>
+		<title>Gait Recognition in the Wild with Dense 3D Representations and A Benchmark</title>
+		<meta property="og:image" content=""/>
+		<meta property="og:title" content="Gait Recognition in the Wild with Dense 3D Representations and A Benchmark" />
+<!--	  	<style>-->
+<!--			p {text-indent:1em;}-->
+<!--	 	</style>-->
+  </head>
+
+  <body>
+    <br>
+          <center>
+          	<span style="font-size:42px">Gait Recognition in the Wild with Dense 3D Representations and A Benchmark</span>
+	  		  <table align=center width=850px>
+	  			  <tr>
+	  	              <td align=center width=170px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="http://jinkaizheng.com/">Jinkai Zheng<sup>1,2</sup></a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=140px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://xinchenliu.com/">Xinchen Liu<sup>2</sup></a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=100px>
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://liuwu.weebly.com/">Wu Liu<sup>2</sup></a></span>
+		  		  		</center>
+		  		  	  </td>
+					<td align=center width=170px>
+						<center>
+							<span style="font-size:20px"><a href="https://lingxiao-he.github.io/">Lingxiao He<sup>2</sup>   </a></span>
+						</center>
+					</td>
+					<td align=center width=170px>
+						<center>
+							<span style="font-size:20px"><a href="http://auto.hdu.edu.cn/2019/0621/c3803a96028/page.htm">Chenggang Yan<sup>1</sup></a></span>
+						</center>
+					</td>
+
+					<td align=center width=100px>
+						<center>
+							<span style="font-size:20px"><a href="https://taomei.me/">Tao Mei<sup>2</sup></a></span>
+						</center>
+					</td>
+				</table>
+          		<!-- <span style="font-size:30px">ICCV 2021.</span> -->
+
+			  <table align=center width=600px>
+				  <tr>
+					  <td align=center width=400px>
+						<center>
+							<span style="font-size:18px"><a href="https://www.hdu.edu.cn/"><sup>1</sup>Hangzhou Dianzi University</a></span>
+						</center>
+					  </td>
+					  <td align=center width=250px>
+						<center>
+							<span style="font-size:18px"><a href="https://github.com/"><sup>2</sup>JD AI Research</a></span>
+						</center>
+					  </td>
+<!--					  <td align=center width=200px>-->
+<!--						<center>-->
+<!--							<span style="font-size:18px"><a href="https://github.com/"><sup>3</sup>Ryerson University</a></span>-->
+<!--						</center>-->
+<!--					  </td>-->
+
+			  </table>
+			IEEE Conference on Computer Vision and Pattern Recognition (<a href="http://cvpr2022.thecvf.com/" target="_blank">CVPR</a>) 2022
+<!--			IEEE Conference on Computer Vision and Pattern Recognition (<a href="http://cvpr2022.thecvf.com/" target="_blank">CVPR</a>) 2022, <font color="#e86e14">XXX Presentation</font>-->
+<!--			TBDTBDTBDTBDTBDTBDTBDTBDTBDTBDTBDTBDTBD (<a href="https://github.com/" target="_blank">TBD</a>) 2022, <font color="#e86e14">TBDTBDTBDTBDTBD</font>-->
+          </center>
+
+   		  <br><br>
+		  <hr>
+
+  		  <br>
+  		  <table align=center width=720px>
+  			  <tr>
+  	              <td width=400px>
+  					<center>
+  	                	<a href="./resources/images/figure_first_page.png" ><img class="rounded" src = "./resources/images/figure_first_page.png" width="80%" ></img></href></a><br>
+					</center>
+  	              </td>
+                </tr>
+  	              <td width=400px>
+  					<center>
+  	                	<span style="font-size:14px"><i> Different gait representations of the same person from two viewpoints. Compared with silhouettes and skeletons, 3D meshes retain the shapes and viewpoints of the human body in the 3D space. (Best viewed in color.)</i>
+					</center>
+  	              </td>
+
+  		  </table>
+      	  <br><br>
+
+		  <table align=center width=720px>
+			<!-- <center><h1>Download</h1></center> -->
+			<tr>
+				<td width=300px>
+					<center>
+						<a href="#dataset"><img class="rounded" onmouseover="this.src='./resources/images/data_icon.png';" onmouseout="this.src='./resources/images/data_icon.png';" src = "./resources/images/data_icon.png" height = "120px"></a><br>
+						<span style="font-size:16px">DataSet</span><br>
+					</center>
+				</td>
+				<td width=300px>
+					<center>
+						<a href="#method"><img class="rounded" onmouseover="this.src='./resources/images/idea.png';" onmouseout="this.src='./resources/images/idea.png';" src = "./resources/images/idea.png" height = "120px"></a><br>
+						<span style="font-size:16px">Method</span><br>
+					</center>
+				</td>
+				<td width=300px>
+					<center>
+						<a href="#analysis"><img class="rounded" onmouseover="this.src='./resources/images/magnify_glass.png';" onmouseout="this.src='./resources/images/magnify_glass.png';" src = "./resources/images/magnify_glass.png" height = "120px"></a><br>
+						<span style="font-size:16px">Analysis</span><br>
+					</center>
+				</td>
+				<td width=300px>
+					<center>
+					  <a href="https://github.com/Gait3D/Gait3D-Benchmark"><img class="rounded" onmouseover="this.src='./resources/images/github_icon.png';" onmouseout="this.src='./resources/images/github_icon.png';" src = "./resources/images/github_icon.png" height = "120px"></a><br>
+					  <span style="font-size:16px">GitHub Repo</span><br>						
+					</center>
+				</td>
+			</tr>
+		  </table>
+
+		  <br><br>
+
+		  <hr>
+
+  		  <table align=center width=720px>
+				<center><h1>Abstract</h1></center>
+		  </table>
+		  <left>
+			<span>
+				Existing studies for gait recognition are dominated by 2D representations like the silhouette or skeleton of
+				the human body in constrained scenes. However, humans live and walk in the unconstrained 3D space,
+				so projecting the 3D human body onto the 2D plane will discard a lot of crucial information like the viewpoint,
+				shape, and dynamics for gait recognition. Therefore, this paper aims to explore dense 3D representations for
+				gait recognition in the wild, which is a practical yet neglected problem. In particular, we propose
+				a novel framework to explore the 3D Skinned Multi-Person Linear (SMPL) model of the human body for gait
+				recognition, named SMPLGait. Our framework has two elaborately-designed branches of which one extracts
+				appearance features from silhouettes, the other learns knowledge of 3D viewpoints and shapes from the
+				3D SMPLmodel. With the learned 3D knowledge, the appearance features from arbitrary viewpoints
+				can be normalized in the latent space to overcome the extreme viewpoint changes in the wild scenes.
+				In addition, due to the lack of suitable datasets, we build the first large-scale 3D representation-based
+				gait recognition dataset, named Gait3D. It contains 4,000 subjects and over 25,000 sequences extracted
+				from 39 cameras in an unconstrained indoor scene. More importantly, it provides 3D SMPL models recovered
+				from video frames which can provide dense 3D information of body shape, viewpoint, and dynamics.
+				Furthermore, it also provides 2D silhouettes and keypoints that can be explored for gait recognition
+				using multi-modal data. Based on Gait3D, we comprehensively compare our method with existing
+				gait recognition approaches, which reflects the superior performance of our framework and
+				the potential of 3D representations for gait recognition in the wild.
+				The code and dataset will be released for research purposes.
+		  	</span>
+		  </left>
+  		  <br><br>
+		  <hr>
+
+		
+
+<!--		  <table align=center width=720px>-->
+<!--			<center><h1>2-Minute presentation video</h1></center>-->
+<!--			<tr>-->
+<!--				<table align=center width=720px>-->
+<!--					<tr>-->
+<!--						<td align=center width=720px>-->
+<!--							<iframe width="600" height="320" src="https://www.youtube.com/watch?v=wJxa4aED6Kc" frameborder="0" allowfullscreen></iframe> -->
+<!--						</td>-->
+<!--					  </tr>-->
+<!--					<tr>-->
+<!--					 </table>-->
+<!--			  </tr>-->
+<!--		  </table>-->
+<!--		   <br><br>-->
+<!--		  <hr>-->
+
+
+		  <table id='dataset'  align=center width=720px>
+			  <center><h1>Gait3D Dataset</h1></center>
+				<table width=720px>
+				<center><h2>(1) Examples of gait representations in the Gait3D dataset.</h2></center>
+				<tr width=720px>
+					<td width=720px>
+					  <center width=720px>
+						  <a><img class="rounded"  style="display:block;margin:0 auto; width:500px"  src = "./resources/images/figure_Gait3D_examples.png"></img></a><br>
+<!--						  <a><img class="rounded" src = "./resources/images/figure_Gait3D_examples.png" width="500px"></img></a><br>-->
+					</center>
+					</td>
+				</tr>
+<!--					<td width=400px>-->
+<!--					  <center>-->
+<!--						  <span style="font-size:14px"><i>-->
+<!--							Examples of gait representations in the Gait3D dataset.The sizes are normalized for visualization. (Best viewed in color.)-->
+<!--							</i>-->
+<!--					</center>-->
+<!--					</td>-->
+
+		  </table>
+	      <br><br>
+		  <hr>
+
+		  <table align=center width=720px>
+			<center><h2>(2) Statistics about the Gait3D dataset.</h2></center>
+			<tr>
+<!--				<center>-->
+<!--				<span>-->
+<!--					Statistics about the Gait3D dataset.-->
+<!--				</span>-->
+<!--				<br>-->
+<!--				</center>-->
+				<td width=240px>
+					<center>
+						<span style="font-size:14px"><a>Statistics of frame sizes</a></span><br>
+						<a><img class="rounded" src = "./resources/images/figure_Gait3D_Statistics_frame_size.png" width="240px"></img></a><br>
+					</center>
+				</td>
+				<td width=240px>
+					<center>
+						<span style="font-size:14px"><a>ID # over sequence #</a></span><br>
+						<a><img class="rounded" src = "./resources/images/figure_Gait3D_Statistics_ID_over_sequence.png" width="240px"></img></a><br>
+					</center>
+				</td>
+				<td width=240px>
+					<center>
+						<span style="font-size:14px"><a>Sequence # over sequence length #</a></span><br>
+						<a><img class="rounded" src = "./resources/images/figure_Gait3D_Statistics_sequence_over_sequenceLength.png" width="240px"></img></a><br>
+					</center>
+				</td>
+			</tr>
+		  </table>
+
+		  <br><br>
+		  <hr>
+
+
+		  <table align=center width=720px>
+			<center><h2>(3) Download Gait3D</h2></center>
+			<tr>
+
+				<td width=300px>
+					<center>
+						<span style="font-size:24px">TBD</span><br><br>
+						<img class="rounded" onmouseover="this.src='./resources/images/dataset_icon.jpg';" onmouseout="this.src='./resources/images/dataset_icon.jpg';" src = "./resources/images/dataset_icon.jpg" height = "150px"><br><br>
+						<span style="font-size:16px"><a href='resources/dataset/'>TBD</a></span><br>
+						<span style="font-size:16px"><a href='resources/dataset/'>TBD</a></span><br>
+					<span style="font-size:16px"></span>
+					</center>
+				</td>
+				<table>
+<!--				<center><h2> Updates </h2></center>-->
+<!--&lt;!&ndash;				[01/10/2021] We include new subsections to track updates and address FAQs.<br>&ndash;&gt;-->
+<!--				TBD.<br>-->
+<!--				<center><h2> FAQs </h2></center>-->
+<!--				Q0: TBD:<br>-->
+<!--				A0: TBD.<br>-->
+				 </table>
+
+		 <br><br>
+		 <hr>
+
+
+		  <table id="method" align=center width=720px>
+			<center><h1>The Architecture of SMPLGait</h1></center>
+			<tr>
+				<td width=400px>
+				  <center>
+					  <a><img class="rounded" src = "./resources/images/figure_SMPLGait_framework.png" width="800px"></img></a><br>
+				</center>
+				</td>
+			</tr>
+				<td width=400px>
+				  <center>
+					  <span style="font-size:14px"><i>
+						The architecture of the SMPLGait framework for 3D gait recognition in the wild.
+						</i>
+				</center>
+				</td>
+
+		  </table>
+	      <br><br>
+		  <hr>
+
+
+		  <table id='analysis' align=center width=720px>
+			<center><h1>Evaluation and Visualization</h1></center>
+			<table>
+			<center><h2>(1) Comparison of the state-of-the-art gait recognition methods on Gait3D.</h2></center>
+			<tr>
+				  <td width=400px>
+				  <center>
+					  <a><img class="rounded" src = "./resources/images/Experiments_comparision_with_SOTAs.png" width="700px"></img></a><br>
+				</center>
+				</td>
+			</tr>
+			<tr>
+				<td align=center width=720px>
+				  <span style="font-size:14px">
+					  <i>
+						  Comparison of the state-of-the-art gait recognition methods on Gait3D. As the inputs of
+						  the model-based methods, i.e., PoseGait and GaitGraph, are unrelated to the frame size,
+						  we only report one group of results.
+					  </i>
+				</span>
+				</td>
+			</tr>
+			</table>
+
+			<br>
+
+			<table>
+			<center><h2>(2) Under the cross-domain setting.</h2></center>
+			<tr>
+				  <td width=400px>
+				  <center>
+					  <a><img class="rounded" src = "./resources/images/Experiments_cross_domain.png" width="600px"></img></a><br>
+				</center>
+				</td>
+			</tr>
+			<tr>
+				<td align=center width=720px>
+				  <span style="font-size:14px">
+					  <i>
+						  Results of cross-domain experiments. The method is trained on
+						  each source dataset and directly tested on the target datasets.
+					  </i>
+				</span>
+				</td>
+			</tr>
+			</table>
+
+			<br>
+
+			<table>
+				<center><h2>(3) Exemplar results of SMPLGait on the Gait3D.</h2></center>
+				<tr>
+					  <td width=400px>
+					  <center>
+						  <a><img class="rounded" src = "./resources/images/q-0063_g-0063-0063-0063-0063-0063.png" width="650px"></img></a><br>
+					</center>
+					</td>
+				</tr>
+				<tr>
+					<td align=center width=720px>
+					  <span style="font-size:14px">
+						  <i>
+							  Exemplar results of SMPLGait on the Gait3D. 16 consecutive frames
+							  are sampled from each sequence for visualization. This case shows
+							  that our method obtains good results when the samples are high-quality.
+							  (Best viewed in color.)
+						  </i>
+					</span>
+					</td>
+				</tr>
+				</table>
+
+			
+		
+					
+		</table>
+	      <br><br>
+		  <hr>
+
+
+		 <table align=center width=720px>
+			<center><h1>Paper</h1></center>
+			   <tr>
+				 <td align=center><a href=""><img class="layered-paper-big" style="height:160px" src="./resources/images/Figure6.png"/></a></td>
+				 <td><span style="font-size:14pt">Zheng, Liu, Liu, He, Yan, Mei.<br>
+				 Gait Recognition in the Wild with Dense 3D Representations and A Benchmark<br>
+				 In ICCV, 2021 (Poster).<br>
+				 (<a href="https://github.com">arXiv</a>)</a>
+				 <span style="font-size:4pt"><a href=""><br></a>
+				 </span>
+				 </td>
+				 <td align=center><a href=""><img class="layered-paper-big" style="height:160px" src="./resources/images/Figure7.png"/></a></td>
+				 <td><span style="font-size:14pt">
+				 (<a href="https://github.com">Additional details/<br>supplementary materials</a>)</a>
+				 <span style="font-size:4pt"><a href=""><br></a>
+				 </span>
+				 </td>
+			 </tr>
+<!--			 <tr>-->
+<!--				  <td width=400px>-->
+<!--				  <center>-->
+<!--					  <a><img class="rounded" src = "./resources/images/TBD.png" width="150px"></img></a><br>-->
+<!--				</center>-->
+<!--				</td>-->
+<!--			</tr>-->
+		   </table>
+		 
+		 <br><br>
+		 <hr>
+
+		  <table align=center width=720px>
+			<center><h1>Cite</h1></center>
+		  <div class="disclaimerbox">
+			<!-- <center><h2>How to interpret the results</h2></center> -->
+
+		   <span>
+<!--				 <center><span style="font-size:28px"><b>Cite</b></span></center>-->
+				<pre style = "font-family:Courier; font-size:14px">
+@inproceedings{chen2021AMD,
+title={Gait Recognition in the Wild with Dense 3D Representations and A Benchmark},
+author={Jinkai Zheng, Xinchen Liu, Wu Liu, Lingxiao He, Chenggang Yan, Tao Mei},
+booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+year={2022}
+}
+				</pre>
+<!--			   <pre style = "font-family:Courier; font-size:64px">-->
+<!--TBD.-->
+<!--				</pre>-->
+		  </div>
+  		  </table>
+
+			<br><br>
+			<hr>
+  
+		  	
+  		  <table align=center width=720px>
+  			  <tr>
+  	              <td width=400px>
+  					<left>
+	  		  <center><h1>Acknowledgements</h1></center>
+						This work was supported in part by the National Key Research and Development
+						Program of China under Grant 2020YFB1406604 and Grant 2020AAA0103800,
+						in part by National Nature Science Foundation of China under Grant 61931008.<br>
+<!--				TBD.<br>-->
+						This work was done when Jinkai Zheng was an intern at JD AI Research.<br>
+</href><a>
+			</left>
+		</td>
+			 </tr>
+		</table>
+
+		<br><br>
+		<hr>
+
+		<table align=center width=720px>
+			<tr>
+				<td width=400px>
+				  <left>
+			<center><h1>Contact</h1></center>
+			For further questions and suggestions, please contact Jinkai Zheng (<a href='mailto:zhengjinkai3@hdu.edu.cn'>zhengjinkai3@hdu.edu.cn</a>).
+			
+			
+		</left>
+	</td>
+		 </tr>
+	</table>
+
+		<br><br>
+
+<script>
+	
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75863369-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+              
+</body>
+</html>
+ 
